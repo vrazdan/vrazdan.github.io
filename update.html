@@ -37,10 +37,100 @@ By this point in our schedule, we were supposed to have been midway in implement
 </p>
 
 <p>
-  
+  At this point, we have not yet begun coding our simulator. We ran into difficulty when specifically defining the components and capabilities of our system. However, now we do have a system diagram and understand exactly what the components of our system will be. Additionally, we know what changes will need to be made to incorporate non-atomic bus transactions and even a write-back buffer. 
+</p>
+
+<p>
+ We have been able to run Pin on programs of our choosing and generate a memory trace file. We modified the Pintool that was made last year by <a href="https://github.com/isaaclimdc/cachemulator"> Yuyang Guo and Isaac Lim </a>, as there is no point completely redoing their work and the memory trace is not integral to the cache simulator. The trace file now outputs whether an instruction was a read or a write, the memory address being accessed, and the processor id. As we discovered, memory traces for simple programs can be hundreds of megabytes, and by using the group's code from last year, we now have only the more essential memory accesses.
+</p>
+
+<h3>Revised Schedule</h3>
+This schedule has us finishing our deliverables by May 7th, with extra time allocated to account for unexpected bugs or problems. Ideally, with this schedule we will be able to complete our goal of implementing the Dragon Protocol by May 11th.
+<ul>
+  <li>
+    By April 9th: Understood how to use Intel Pin. Break the simulator into components and mapped out their interactions in a generalized fashion.
+  </li>
+  <li>
+    By April 20th: Have the ability to Pin a program and parse the resulting data. Finalized system diagrams into reusable components that are needed for all protocol implementations, as well as what additional components will be needed for non-atomic bus transactions and having a write-back buffer.
+  </li>
+  <li>
+    By April 23rd: 
+      <p>
+      Have written a sample C++ program that may be used to test the simulator's correctness. We will compare simulator output with what behavior is expected from the trace we wrote. Don
+      </p>
+      <p>
+        Begun work on the actual simulator, such that the input memory traces are processed correctly into specific cache sets and lines based on the address. Vishnu
+      </p>
+
+  </li>
+  <li>
+    By April 27th:
+    <p>
+      Be very close, if not done, with having a working MSI atomic, no write-back buffer based cache simulator. Vishnu and Don
+    </p>
+    <p>
+      Have a rigorous test set-up that will run our cache simulator with given input parameters, and then collect and plot the results for us. Don and Vishnu
+    </p>
+
+  </li>
+  <li>
+    By April 30th:
+    <p>
+      Complete the majority of the MESI protocol for an atomic, no write-back buffer cache. Don and Vishnu
+    </p>
+    <p>
+      Implement a write-back buffer for the MSI protocol. Vishnu and Don
+    </p>
+    <p>
+      Begin implementing non-atomic bus transactions. Don and Vishnu
+    </p>
+  </li>
+  <li>
+    By May 4th:
+    <p>
+      Finish the MESI protocol for an atomic, no write-back buffer. Don and Vishnu
+    </p>
+    <p>
+      Be able to run either MSI or MESI with a write-back buffer, and compare execution performance without a buffer. Vishnu and Don
+    </p>
+    <p>
+      Begin work on the MOESI protocol. Don and Vishnu
+    </p>
+    <p>
+      Either finish or be close to completing non-atomic bus transactions. Vishnu and Don
+    </p>
+  </li>
+  <li>
+    By May 7th:
+    <p>
+      Finish the MOESI protocol. Vishnu and Don
+    </p>
+    <p>
+      Be able to compare the performance of MSI, MESI, and MOESI protocols with or without write-back buffers, and with or without atomic bus transactions. Don and Vishnu
+    </p>
+    <p>
+      Begin working on the Dragon protocol. Don and Vishnu
+    </p>
+  </li>
+  <li>
+    By May 11th: Finish the Dragon protocol. Have all graphs and data made and ready to present. Don and Vishnu
+  </li>
+</ul>
 
 
-  
+<h3> How we're doing</h3>
+<p>
+  We are currently a little behind schedule with respect to our goals and deliverables. We will no longer be trying to complete a directory based cache coherence protocol for our simulator, nor writing our own custom graphics program to run on our simulator, as we now realize those were too ambitious. We will still be able to meet all of our original deliverables. Our schedule, barring unexpected complications, will allow us to complete our goal of implementing the Dragon protocol. 
+</p>
+Our updated goal is just to implement the Dragon coherence protocol. 
+
+<h3>What we plan to show</h3>
+<p>
+  We plan to show our graphs comparing the performance of the various protocols. We will highlight the differences that emerge when using a write-back buffer with and without non-atomic bus transactions as well. 
+</p>
+<h3> Concerns </h3>
+<p>
+  Our concerns at this point are mainly being able to implement all of our deliverables, which is just an issue of us coding and doing the work well. 
 </p>
 
       </section>
