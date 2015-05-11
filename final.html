@@ -80,21 +80,28 @@ This class handles all bus transactions. It ensures that Cache objects perform t
 <p>
 This is a memory request, consisting of a single character representing read or write, the memory address requested, and the thread ID of the thread requesting the data.
 </p>
+<h5>CacheJob</h5> 
+<p>
+INSERT DIAGRAM HERE
+</p>
 <h4>Verification</h4>
 <p>
-In order to verify that our cache simulator was actually correct, we hand-wrote test memory traces for each of the cache coherence protocols. These traces would ensure that each transition for a given protocol was undertaken at least once.
+In order to verify that our cache simulator was actually correct, we hand-wrote test memory traces for each of the cache coherence protocols. These traces would ensure that each transition for a given protocol was undertaken at least once. They would also check the eviction policy for each protocol.
 </p>
 <h3>Results</h3>
 <p>
 We used our cache simulator to test several different programs. First, we compared cache performance of a program that had significant amounts of false sharing with a program that accomplished the same task but did not have false sharing.
 <img src="no_false_sharing.png" alt="No false sharing" style="width:600px;height:371px">
 <img src="false_sharing.png" alt="False sharing" style="width:600px;height:371px">
-
-
-
+<img src="cycles_no_false_sharing.png" alt="No false sharing cycles" style="width:600px;height:371px">
+<img src="cycles_false_sharing.png" alt="False sharing cycles" style="width:600px;height:371px">
+As can be seen from the graphs, misses, flushes, and bus requests are significantly decreased for the program with no false sharing. This is as expected. All of the cache protocols were able to demonstrate that even if the program accomplishes the same task, the way that the data is organized can have a major impact on cache performance. However, there are some issues with the results. First of all, we were expecting MOESI to perform better than MESI and MSI for the false sharing trace. However, it seems to be performing worse, with more misses and more memory flushes, as well as more cycles. This may be a result of unforseen overhead cause by the MOESI protocol and the way we were counting misses, or it could be that there is a bug with the transfer of ownership of cache lines in the MOESI protocol. This inconsistency is an area of further inquiry and development for the future.
 </p>
 <p>
-We also used our cache simulator on a CPU raytracer written for another class. As the memory trace file was very large, we use a small sample of the trace file that was compiled from random samples of the whole trace file. GRAPHS, TALK ABOUT THEM
+We also used our cache simulator on a CPU raytracer written for another class. As the memory trace file was very large, we use a small sample of the trace file that was compiled from random samples of the whole trace file.
+<img src="random.png" alt="Random" style="width:600px;height:371px">
+<img src="cycles_random.png" alt="Random cycles" style="width:600px;height:371px">
+
 </p>
 <p>
 Finally, just out of curiosity, we tested our cache simulator on a trace with completely random memory accesses. GRAPHS, TALK ABOUT THEM
