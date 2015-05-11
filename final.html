@@ -34,6 +34,7 @@
 
 <h3>Links</h3>
 <a href="https://github.com/vrazdan/15418-Cache-Simulator"><p><font color="blue">Github repo</font></p></a>
+<a href="final_presentation.pdf"><p><font color="blue">Slides</font></p></a>
 
 <h3>Summary</h3>
 <p>
@@ -88,6 +89,10 @@ INSERT DIAGRAM HERE
 <p>
 In order to verify that our cache simulator was actually correct, we hand-wrote test memory traces for each of the cache coherence protocols. These traces would ensure that each transition for a given protocol was undertaken at least once. They would also check the eviction policy for each protocol.
 </p>
+<h4>Memory Manager</h4>
+<p>
+In order to preserve serialization of processing memory requests, we used a serialized memory manager that would only process one memory request at a time.s a result, our cycle counts are unrealistically high. A real memory manager would be able to reorder memory requests and more than one request could be processed at a time. However, the <i>relative</i> cycle costs are correct. Therefore, although the cycle counts themselves are not useful, it is useful to compare cycle costs across different programs or cache protocols.
+</p>
 <h3>Results</h3>
 <p>
 We used our cache simulator to test several different programs. First, we compared cache performance of a program that had significant amounts of false sharing with a program that accomplished the same task but did not have false sharing.
@@ -102,15 +107,24 @@ As can be seen from the graphs, misses, flushes, and bus requests are significan
 </p>
 <p>
 We also used our cache simulator on a CPU raytracer written for another class. As the memory trace file was very large, we use a small sample of the trace file that was compiled from random samples of the whole trace file.
-<img src="random.png" alt="Random" style="width:600px;height:371px">
-<img src="cycles_random.png" alt="Random cycles" style="width:600px;height:371px">
-
+<img src="raytrace.png" alt="Raytrace" style="width:600px;height:371px">
+<img src="cycles_raytrace.png" alt="Raytrace cycles" style="width:600px;height:371px">
 </p>
 <p>
-Finally, just out of curiosity, we tested our cache simulator on a trace with completely random memory accesses. GRAPHS, TALK ABOUT THEM
+The raytracer trace consisted almost entirely of memory reads. As a result, the performance of all of the cache coherence protocols were almost exactly the same, as the difference between the protocols lies in the existence and behavior of the exclusive and modified states, which are only entered when writes are performed. However, there is a difference in the the number of data shares between the MESI and MOESI protocols. We were expecting MOESI to have more shares than MESI, but the opposite was true. We suspect that this also may have been due to a bug in the ownership transfer in the MOESI protocol. Cycle counts for this test correlated with the misses and shares counts. MESI, which was able to take advantage of data sharing, had a cycle count advantage over MSI. MOESI, which had less data shares, took more cycles than MESI.
 </p>
-
-
+<p>
+Finally, in order to test memory shares, we tested our cache simulator on a trace with completely random memory accesses. 
+<img src="random.png" alt="Random" style="width:600px;height:371px">
+<img src="cycles_random.png" alt="Random cycles" style="width:600px;height:371px">
+</p>
+<p>
+On this trace, our simulator performed as expected. MSI performed the worst, as it could not take advanage of data sharing. The higher amount of data sharing offered by MOESI allows it to outperform MSI. This performnce gain is also reflected in the cycle count, with MOESI and MESI performing much better than MSI, and MESI performing marginally worse than MOESI. 
+</p>
+<h3>Conclusion</h3>
+<p>
+As a tool to compare performance of different programs, as well as different cache protocols, our simulator was a success. We can reliably detect false sharing in programs and find which coherence protocol is better for which situations. There are, however, areas for improvement. In the future, we can look further at the finidng the ownership bug in the MOESI protocol. Addtionally, we can generate more realistic cycle counts by writing a better memory manager.
+</p>
 
       </section>
     </div>
