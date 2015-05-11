@@ -96,6 +96,7 @@ We used our cache simulator to test several different programs. First, we compar
 <img src="false_sharing.png" alt="False sharing" style="width:600px;height:371px">
 <img src="cycles_no_false_sharing.png" alt="No false sharing cycles" style="width:600px;height:371px">
 <img src="cycles_false_sharing.png" alt="False sharing cycles" style="width:600px;height:371px">
+<br>
 <p>
 As can be seen from the graphs, misses, flushes, and bus requests are significantly decreased for the program with no false sharing. This is as expected. All of the cache protocols were able to demonstrate that even if the program accomplishes the same task, the way that the data is organized can have a major impact on cache performance. However, there are some issues with the results. First of all, we were expecting MOESI to perform better than MESI and MSI for the false sharing trace. However, it seems to be performing worse, with more misses and more memory flushes, as well as more cycles. This may be a result of unforseen overhead cause by the MOESI protocol and the way we were counting misses, or it could be that there is a bug with the transfer of ownership of cache lines in the MOESI protocol. This inconsistency is an area of further inquiry and development for the future.
 </p>
